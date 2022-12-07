@@ -27,8 +27,8 @@ public abstract class AbstractHazelcastConfigurator implements HazelcastConfigur
         config.getNetworkConfig().setPort(nodePort);
 
         JoinConfig joinConfig =  config.getNetworkConfig().getJoin();
-        joinConfig.getTcpIpConfig().setEnabled(true);
-        joinConfig.getMulticastConfig().setEnabled(false);
+        joinConfig.getTcpIpConfig().setEnabled(false);
+        joinConfig.getMulticastConfig().setEnabled(true);
         config.setInstanceName(HazelcastConstants.CLUSTER_NAME);
         init = true;
     }
