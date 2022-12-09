@@ -2,8 +2,6 @@ package dev.kemalyi;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.LifecycleEvent;
-import com.hazelcast.core.LifecycleListener;
 import dev.kemalyi.config.HazelcastConfigurator;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,10 +22,8 @@ public class ClusterController {
     }
     private void addLifecycleListenerToHazelcastInstance(HazelcastInstance instance) {
         instance.getLifecycleService().addLifecycleListener(lifecycleEvent -> {
-            if (LifecycleEvent.LifecycleState.SHUTTING_DOWN == lifecycleEvent.getState()) {
-                log.error("[addLifecycleListenerToHazelcastInstance] State: {} for: {}", lifecycleEvent.getState(),
+                log.info("[addLifecycleListenerToHazelcastInstance] State: {} for: {}", lifecycleEvent.getState(),
                         instance.getName());
-            }
         });
     }
 }
